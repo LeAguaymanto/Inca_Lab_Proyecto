@@ -1,0 +1,38 @@
+<footer class="site-footer">
+    <div class="footer-inner">
+        <span>InkaLab</span>
+        <span>¡contactanos!</span>
+        <span>&copy; <%= new Date().getFullYear() %></span>
+    </div>
+</footer>
+
+<style>
+    .site-footer {
+        border-top: 1px solid var(--line);
+        background: var(--ink);
+        color: #f8f5ef;
+    }
+
+    .footer-inner {
+        width: min(1100px, calc(100% - 40px));
+        min-height: 76px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        font-size: 0.9rem;
+    }
+
+    .footer-inner span:nth-child(2) { color: #b9cfca; }
+
+    @media (max-width: 600px) {
+        .footer-inner {
+            align-items: flex-start;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 120px;
+            gap: 7px;
+        }
+    }
+</style>
