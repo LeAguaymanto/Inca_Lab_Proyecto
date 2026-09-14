@@ -7,9 +7,215 @@
 </head>
 <body>
     <%- include('partials/_header', { currentPage: 'contactos' }) %>
-    <main> <%# ACA INICIA A PROGRAMAR %>
-        <h1>Contactos</h1>
+    <main class="contact-page">
+        <section class="contact-hero" aria-labelledby="contact-hero-title">
+            <img src="/imagenes/contactos-img/contactos-portada.png" alt="Fachada de InkaLab Calibracion y Verificacion">
+            <div class="contact-hero-panel">
+                <p class="hero-kicker">Contacto</p>
+                <h1 id="contact-hero-title">Estamos para ayudarte</h1>
+                <p>Comunicate con nosotros para consultas, cotizaciones o mas informacion sobre nuestros servicios y capacitaciones.</p>
+            </div>
+        </section>
+
+        <section class="contact-content" aria-label="Formulario e informacion de contacto">
+            <aside class="contact-details" aria-label="Datos de InkaLab">
+                <div class="detail-list">
+                    <div class="detail-item">
+                        <span class="detail-icon" aria-hidden="true">⌕</span>
+                        <div>
+                            <span class="detail-label">Teléfono</span>
+                            <a href="tel:+51999999999">+51 987 654 321<br>+51 234 5678</a>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon" aria-hidden="true">✉</span>
+                        <div>
+                            <span class="detail-label">Correo</span>
+                            <a href="mailto:info@incalab.com">info@incalab.com<br>ventas@incalab.com</a>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon" aria-hidden="true">⌖</span>
+                        <div>
+                            <span class="detail-label">Ubicación</span>
+                            <p>Av. Los Constructores 123<br>Urb. Industrial - Ate<br>Lima, Perú</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon" aria-hidden="true">◷</span>
+                        <div>
+                            <span class="detail-label">Horario de atención</span>
+                            <p>Lunes a Viernes<br>8:00 a. m. - 5:30 p. m.<br>Sábados (previa cita)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="help-card">
+                    <strong>¿Necesitas asesoría?</strong>
+                    <p>Nuestro equipo está listo para brindarte la mejor solución.</p>
+                    <a href="https://wa.me/51987654321">Hablar por WhatsApp</a>
+                </div>
+            </aside>
+
+            <div class="contact-form-wrap"> 
+                <p class="section-kicker">Envíanos un mensaje</p>
+                <form class="contact-form" action="/contactos" method="post">
+                    <div class="form-row">
+                        <label>
+                            <span>Nombre y apellidos</span>
+                            <input type="text" name="nombre" placeholder="Nombre completo" required>
+                        </label>
+                        <label>
+                            <span>Correo electrónico</span>
+                            <input type="email" name="correo" placeholder="nombre@correo.com" required>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label>
+                            <span>Teléfono</span>
+                            <input type="tel" name="telefono" placeholder="Tu número de teléfono" required>
+                        </label>
+                        <label>
+                            <span>Asunto</span>
+                            <select name="servicio" required>
+                                <option value="" selected disabled>Selecciona un tema</option>
+                                <option value="servicio-1">Servicio 1</option>
+                                <option value="servicio-2">Servicio 2</option>
+                                <option value="servicio-3">Servicio 3</option>
+                            </select>
+                        </label>
+                    </div>
+                    <label>
+                        <span>Mensaje</span>
+                        <textarea name="mensaje" rows="5" placeholder="Escribe aquí tu consulta" required></textarea>
+                    </label>
+                    <button type="submit">Enviar mensaje</button>
+                </form>
+            </div>
+        </section>
     </main>
     <%- include('partials/_footer') %>
 </body>
 </html>
+
+<style>
+    .contact-page {
+         width: 100%;
+         max-width: none;
+         padding: 0 0 28px;
+         background: #f4f4f2; }
+
+    .contact-hero {
+         position: relative; 
+         min-height: 420px; 
+         overflow: hidden; 
+         background: #09243b; }
+
+    .contact-hero > img { 
+        width: 100%; 
+        height: 420px; 
+        display: block; 
+        object-fit: cover; 
+        object-position: center; 
+        filter: brightness(.86); }
+
+    .contact-hero-panel { 
+        position: absolute; 
+        inset: 0 auto 0 0; 
+        width: min(53%, 2000px); 
+        min-width: 410px; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        padding: 48px 48px 48px max(30px, calc((100vw - 1180px) / 2)); color: #fff; background: linear-gradient(90deg, #09243b 0%, rgba(9,36,59,.98) 68%, rgba(9,36,59,.12) 100%); }
+
+    .hero-kicker { 
+        margin: 0 0 12px; 
+        color: #f07818; 
+        font-size: .72rem; 
+        font-weight: bold; 
+        letter-spacing: 1px; 
+        text-transform: uppercase; }
+        
+    .contact-hero-panel h1 { 
+        max-width: 310px; 
+        margin: 0 0 22px; 
+        font-size: clamp(2rem, 3.2vw, 3rem); 
+        line-height: .98; 
+        letter-spacing: -1px; }
+        
+    .contact-hero-panel p {
+        max-width: 310px; 
+        margin: 0; color: #d8e8ed; font-size: .82rem; line-height: 1.55; }
+        
+    .contact-content { width: min(1180px, calc(100% - 48px)); 
+        margin: 0 auto; 
+        padding-top: 22px;
+        display: grid; grid-template-columns: minmax(210px, 1fr) minmax(0, 2fr);
+        gap: 18px; }
+
+    .section-kicker {
+        margin: 0 0 14px; color: #ef7418;
+        font-size: .72rem; 
+        font-weight: bold; 
+        letter-spacing: 1px; 
+        text-transform: uppercase; }
+
+    .contact-form-wrap, .contact-details { 
+        border-radius: 5px; 
+        background: #fff; 
+        box-shadow: 0 2px 10px rgba(13,39,55,.06); }
+
+    .contact-form-wrap { 
+        padding: 18px 24px 24px; }
+
+    .contact-form { 
+        display: grid;
+        gap: 10px; }
+
+    .form-row { 
+        display: grid; 
+        grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .contact-form label { 
+        display: grid; 
+        gap: 10px; 
+        color: #183642; 
+        font-size: .68rem; 
+        font-weight: bold; }
+        
+    .contact-form input, .contact-form select, .contact-form textarea { 
+        width: 100%; 
+        border: 1px solid #e3e5e4; 
+        border-radius: 3px; 
+        padding: 9px 10px; 
+        color: #183642; 
+        background: #fff; 
+        font: inherit; 
+        font-size: .72rem; }
+
+    .contact-form textarea { resize: vertical; min-height: 78px; }
+    .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: 2px solid #ef7418; outline-offset: 2px; border-color: #ef7418; }
+    .contact-form button { margin: 2px auto 0; border: 0; border-radius: 3px; padding: 10px 24px; color: #fff; background: #ef7418; cursor: pointer; font: inherit; font-size: .72rem; font-weight: bold; transition: background 160ms ease, transform 160ms ease; }
+    .contact-form button:hover { background: #d85f0d; transform: translateY(-1px); }
+    .contact-details { padding: 0; background: transparent; box-shadow: none; }
+    .detail-list { display: grid; gap: 6px; }
+    .detail-item { min-height: 60px; display: flex; align-items: flex-start; gap: 12px; padding: 11px 12px; border-radius: 5px; background: #fff; box-shadow: 0 2px 10px rgba(13,39,55,.05); }
+    .detail-icon { flex: 0 0 28px; color: #ef7418; font-size: 1.8rem; line-height: 1; text-align: center; }
+    .detail-label { display: block; margin-bottom: 3px; color: #172b39; font-size: .68rem; font-weight: bold; }
+    .detail-item a, .detail-item p { margin: 0; color: #33454e; font-size: .64rem; line-height: 1.35; text-decoration: none; }
+    .detail-item a:hover { color: #ef7418; }
+    .help-card { margin-top: 8px; padding: 16px 14px; border-radius: 5px; color: #fff; background: #09243b; font-size: .72rem; }
+    .help-card strong { font-size: .78rem; }
+    .help-card p { margin: 6px 0 12px; line-height: 1.4; }
+    .help-card a { display: inline-block; padding: 6px 10px; border-radius: 3px; color: #fff; background: #ef7418; font-size: .62rem; text-decoration: none; }
+    @media (max-width: 800px) {
+        .contact-hero, .contact-hero > img { min-height: 480px; height: 480px; }
+        .contact-hero-panel { width: 100%; min-width: 0; height: 58%; inset: 0 auto 0 0; justify-content: center; padding: 36px 28px; background: linear-gradient(90deg, #09243b 0%, rgba(9,36,59,.96) 75%, rgba(9,36,59,0) 100%); }
+        .contact-content { grid-template-columns: 1fr; gap: 12px; }
+    }
+    @media (max-width: 520px) {
+        .contact-content { width: min(100% - 32px, 1180px); }
+        .contact-content { padding-top: 16px; }
+        .form-row { grid-template-columns: 1fr; }
+        .contact-form button { width: 100%; }
+    }
+</style>
