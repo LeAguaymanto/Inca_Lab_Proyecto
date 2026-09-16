@@ -3,14 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio | InkaLab</title>
+    <title>Inicio | Incalab- Metrología de Precisión</title>
+    <style>
+        /* ==========================================================================
+           VARIABLES GLOBALES Y RESET
+           ========================================================================== */
+        :root {
+            --color-primary: #0F172A;
+            --color-secondary: #1E293B;
+            --color-accent: #EA580C;
+            --color-accent-hover: #C2410C;
+            --color-bg-light: #F8FAFC;
+            --color-text-main: #334155;
+            --color-text-muted: #64748B;
+            --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            background: #ffffff;
+            margin: 0;
+            font-family: var(--font-main);
+            color: var(--color-text-main);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        main {
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+        main {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+}
+
+        /* ==========================================================================
+           HERO SECTION (Banner Principal)
+           ========================================================================== */
+        .hero-panel {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+
+        /* Estiramiento completo a los bordes */
+        width: 100vw !important;
+        position: relative !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+
+        /* Fondo con la nueva foto en formato .jpg y degradado optimizado */
+        background: 
+            linear-gradient(90deg, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.75) 45%, rgba(15, 23, 42, 0.15) 100%),
+            url('/Imagenes/inicio-img/lab-hero.jpeg') center/cover no-repeat;
+    }
+
+        .hero-inner {
+            width: 100% !important;
+            max-width: 1200px !important; /* Mantiene el texto contenido */
+            margin: 0 auto !important;    /* Centra el bloque de texto */
+            padding: 80px 40px !important;
+            box-sizing: border-box !important;
+        }
+
+        .hero-copy {
+            color: #ffffff;
+            max-width: 600px;
+        }
+
+        .hero-copy h1 {
+            margin: 0;
+            font-size: clamp(2.5rem, 4vw, 4.5rem);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            font-weight: 800;
+        }
+
+        .hero-copy h1 .highlight {
+            color: var(--color-accent);
+        }
+
+        .hero-copy p {
+            margin: 24px 0 40px;
+            color: #CBD5E1;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            background-color: var(--color-accent);
+            color: white;
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 16px 32px;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(234, 88, 12, 0.4);
+        }
+
+        /* ==========================================================================
+           BARRA DE CARACTERÍSTICAS (Trust Bar) - Mantenemos SVGs aquí por ser UI
+           ========================================================================== */
+        .features-bar {
+            background: #ffffff;
+            border-bottom: 1px solid #E2E8F0;
+            padding: 40px 0;
+        }
+
+        .features-grid {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--color-bg-light);
+            display: grid;
+            place-items: center;
+            color: var(--color-accent);
+            flex-shrink: 0;
+        }
+
+        .feature-icon svg { width: 24px; height: 24px; }
+
+        .feature-item h3 {
+            margin: 0 0 8px;
+            font-size: 1rem;
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        .feature-item p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--color-text-muted);
+        }
+
+        /* ==========================================================================
+           SECCIÓN DE SERVICIOS (Adaptada para usar tus imágenes locales)
+           ========================================================================== */
+        .services-section {
+            padding: 80px 0 100px;
+            background: var(--color-bg-light);
+        }
+
+        .services-wrap {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .services-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 12px;
+            color: var(--color-accent);
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .services-header h2 {
+            margin: 0 0 20px;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            color: var(--color-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .services-header p {
+            color: var(--color-text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 40px 30px;
+            border: 1px solid #E2E8F0;
+            transition: var(--transition-smooth);
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+            border-color: #CBD5E1;
+        }
+
+        /* Contenedor circular ajustado para tus imágenes */
+        .service-card-icon {
+            width: 84px;
+            height: 84px;
+            margin: 0 auto 24px;
+            background: var(--color-bg-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Asegura que la imagen no se salga del círculo */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: var(--transition-smooth);
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover .service-card-icon {
+            border-color: var(--color-accent);
+            transform: scale(1.05);
+        }
+
+        /* Estilo para que la imagen ocupe bien el espacio */
+        .service-card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ajusta la imagen sin deformarla */
+        }
+
+        .service-card h3 {
+            margin: 0 0 12px;
+            font-size: 1.25rem;
+            color: var(--color-primary);
+        }
+
+        .service-card p {
+            margin: 0;
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ==========================================================================
+           RESPONSIVE (Móviles y Tablets)
+           ========================================================================== */
+        @media (max-width: 992px) {
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-inner { padding: 60px 20px; text-align: center; }
+            .hero-copy { margin: 0 auto; }
+            .features-grid, .services-grid { grid-template-columns: 1fr; gap: 24px; }
+            .features-bar { padding: 40px 20px; }
+            .services-wrap { padding: 0 20px; }
+        }
+    </style>
 </head>
 <body>
     <%- include('partials/_header', { currentPage: 'inicio' }) %>
-    <main> <%# ACA INICIA A PROGRAMAR %>
-        <h1>Hola</h1>
+
+    <main>
+        <!-- SECCIÓN 1: HERO -->
+        <section class="hero-panel">
+            <div class="hero-inner">
+                <div class="hero-copy">
+                    <h1>El socio estratégico para sus <span class="highlight">mediciones industriales</span></h1>
+                    <p>
+                        <strong>INCALAB brinda servicios de calibración y verificación de magnitudes: masa, intensidad de corriente y temperatura.</strong> Garantizamos resultados exactos para que su empresa cumpla con las normativas más exigentes sin contratiempos.
+                    </p>
+                    <a href="#servicios" class="cta-button">
+                        Ver Servicios Metrológicos
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: CARACTERÍSTICAS -->
+        <section class="features-bar" aria-label="Nuestras Ventajas Competitivas">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <h3>Resultados Exactos</h3>
+                        <p>Procedimientos bajo normativas internacionales ISO/IEC 17025.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <div>
+                        <h3>Trazabilidad Total</h3>
+                        <p>Mediciones trazables a patrones nacionales e internacionales.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    </div>
+                    <div>
+                        <h3>Cuerpo Técnico</h3>
+                        <p>Especialistas metrólogos en constante actualización técnica.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <div>
+                        <h3>Garantía de Calidad</h3>
+                        <p>Minimizamos la incertidumbre para asegurar tus procesos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: SERVICIOS CON TUS IMÁGENES -->
+        <section class="services-section" id="servicios">
+            <div class="services-wrap">
+                <div class="services-header">
+                    <span class="eyebrow">Áreas de Calibración</span>
+                    <h2>Nuestros Servicios Metrológicos</h2>
+                    <p>Aseguramos la exactitud de tu instrumentación analítica e industrial mediante equipamiento patrón de alta gama.</p>
+                </div>
+
+                <div class="services-grid">
+                    <!-- Tarjeta: Masa -->
+                    <article class="service-card">
+                        <div class="service-card-icon">
+                            <!-- Imagen integrada desde tu carpeta -->
+                            <img src="/Imagenes/inicio-img/icon_masa.jpeg" alt="Icono de calibración de masa">
+                        </div>
+                        <h3>Magnitud: Masa</h3>
+                        <p>Calibración de balanzas analíticas, de precisión, pesas patrón y sistemas de pesaje industrial.</p>
+                    </article>
+
+                    <!-- Tarjeta: Corriente -->
+                    <article class="service-card">
+                        <div class="service-card-icon">
+                            <!-- Imagen integrada desde tu carpeta -->
+                            <img src="/Imagenes/inicio-img/icon_intensid_corriente.jpeg" alt="Icono de intensidad de corriente">
+                        </div>
+                        <h3>Intensidad de Corriente</h3>
+                        <p>Verificación de multímetros, pinzas amperimétricas y equipos de medición eléctrica de alta precisión.</p>
+                    </article>
+
+                    <!-- Tarjeta: Temperatura -->
+                    <!-- Tarjeta: Temperatura -->
+                    <article class="service-card">
+                        <div class="service-card-icon">
+                            <!-- Reemplaza la extensión .png por .jpg o .jpeg si es necesario -->
+                            <img src="/Imagenes/inicio-img/icon_termometrica.jpeg" alt="Icono de termometría">
+                        </div>
+                        <h3>Termometría</h3>
+                        <p>Calibración en bloque seco, termómetros de líquido, termopares, RTDs y registradores de datos (Dataloggers).</p>
+                    </article>
+                </div>
+            </div>
+        </section>
     </main>
 
     <%- include('partials/_footer') %>
+    
 </body>
 </html>

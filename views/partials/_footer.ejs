@@ -1,38 +1,195 @@
-<footer class="site-footer">
-    <div class="footer-inner">
-        <span>InkaLab</span>
-        <span>¡contactanos!</span>
-        <span>&copy; <%= new Date().getFullYear() %></span>
-    </div>
-</footer>
-
 <style>
+    /* ==========================================================================
+       ESTILOS DEL PIE DE PÁGINA (FOOTER)
+       ========================================================================== */
     .site-footer {
-        border-top: 1px solid var(--line);
-        background: var(--ink);
-        color: #f8f5ef;
+        background-color: var(--color-primary, #0F172A);
+        color: #ffffff;
+        padding: 40px 0;
+        border-top: 4px solid var(--color-accent, #EA580C); /* Línea naranja superior opcional */
+        
+        /* Aseguramos que ocupe todo el ancho si hay contenedores globales */
+        width: 100vw !important;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
-    .footer-inner {
-        width: min(1100px, calc(100% - 40px));
-        min-height: 76px;
+    .footer-container {
+        max-width: 1200px;
         margin: 0 auto;
+        padding: 0 40px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 20px;
-        font-size: 0.9rem;
+        gap: 30px;
     }
 
-    .footer-inner span:nth-child(2) { color: #b9cfca; }
+    /* Columnas */
+    .footer-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 
-    @media (max-width: 600px) {
-        .footer-inner {
-            align-items: flex-start;
+    /* Columna 1: Logo y Marca */
+    .footer-brand {
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
+        max-width: 320px;
+    }
+    
+    .footer-logo {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        border-radius: 50%; /* Por si necesitas que el fondo blanco del logo sea circular */
+    }
+
+    .footer-brand h4 {
+        margin: 0 0 4px 0;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+
+    .footer-brand p {
+        margin: 0;
+        font-size: 0.8rem;
+        color: #94A3B8;
+        line-height: 1.4;
+    }
+
+    /* Separadores visuales (Líneas verticales tenues) */
+    .footer-divider {
+        width: 1px;
+        height: 50px;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Columna 2: Texto CTA */
+    .footer-cta-text h4 {
+        margin: 0 0 4px 0;
+        font-size: 1rem;
+    }
+
+    .footer-cta-text p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #94A3B8;
+    }
+
+    /* Columna 3: Contacto (Iconos) */
+    .footer-contact ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .footer-contact li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.9rem;
+        color: #CBD5E1;
+    }
+
+    .footer-contact svg {
+        width: 16px;
+        height: 16px;
+        color: var(--color-accent, #EA580C);
+    }
+
+    /* Columna 4: Botón */
+    .btn-footer {
+        background-color: var(--color-accent, #EA580C);
+        color: #ffffff;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: background 0.3s ease;
+    }
+
+    .btn-footer:hover {
+        background-color: #C2410C;
+    }
+
+    /* Diseño Responsivo (Para tablets y móviles) */
+    @media (max-width: 992px) {
+        .footer-container {
+            flex-wrap: wrap;
             flex-direction: column;
-            justify-content: center;
-            min-height: 120px;
-            gap: 7px;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .footer-divider {
+            display: none; /* Ocultamos las líneas verticales en móviles */
+        }
+        .footer-brand {
+            max-width: 100%;
         }
     }
 </style>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        
+        <!-- SECCIÓN 1: LOGO Y TEXTO -->
+        <div class="footer-col footer-brand">
+            <!-- Nota: Ajusta esta ruta si tu logo está en otra carpeta -->
+            <img src="/imagenes/logo_ikalab/incalab_logo.png" 
+            alt="Logo de Incalab" 
+            style="height:2em; vertical-align:middle; margin-right:8px;">
+            <h4 style="display:inline; vertical-align:middle;"></h4>
+
+            <div>
+                <h4>INCALAB</h4>
+                <p>Calibración y verificación de magnitudes:<br>masa, intensidad de corriente y temperatura.</p>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <!-- SECCIÓN 2: PREGUNTA -->
+        <div class="footer-col footer-cta-text">
+            <h4>¿Necesitas calibrar tus equipos?</h4>
+            <p>Estamos listos para ayudarte.</p>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <!-- SECCIÓN 3: DATOS DE CONTACTO -->
+        <div class="footer-col footer-contact">
+            <ul>
+                <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    +51 987 654 321
+                </li>
+                <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    info@incalab.com
+                </li>
+                <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.242-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Lima, Perú
+                </li>
+            </ul>
+        </div>
+
+        <!-- SECCIÓN 4: BOTÓN -->
+        <div class="footer-col">
+            <a href="/contactos" class="btn-footer">
+                Contáctanos 
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </a>
+        </div>
+
+    </div>
+</footer>
