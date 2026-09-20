@@ -72,15 +72,15 @@
                     <div class="form-row">
                         <label>
                             <span>Teléfono</span>
-                            <input type="tel" name="telefono" placeholder="Tu número de teléfono" required>
+                            <input type="tel" name="telefono" id="telefono" placeholder="Tu número de teléfono" maxlength="9" inputmode="numeric" pattern="[0-9]{9}" required>
                         </label>
                         <label>
                             <span>Asunto</span>
                             <select name="servicio" required>
                                 <option value="" selected disabled>Selecciona un tema</option>
-                                <option value="servicio-1">Servicio 1</option>
-                                <option value="servicio-2">Servicio 2</option>
-                                <option value="servicio-3">Servicio 3</option>
+                                <option value="servicio_1: Magnitud Masa">Magnitud: Masa</option>
+                                <option value="servicio-2: Intensidad de corriente">Intensidad de corriente</option>
+                                <option value="servicio-3: Termometría">Termometría</option>
                             </select>
                         </label>
                     </div>
@@ -90,6 +90,59 @@
                     </label>
                     <button type="submit">Enviar mensaje</button>
                 </form>
+                <script>
+                    const telefonoInput = document.getElementById('telefono');
+                    const contactForm = document.querySelector('.contact-form');
+
+                    if (telefonoInput) {
+                        telefonoInput.addEventListener('input', () => {
+                            telefonoInput.value = telefonoInput.value.replace(/\D/g, '').slice(0, 9);
+                            if (telefonoInput.value.length === 9) {
+                                telefonoInput.setCustomValidity('');
+                            } else {
+                                telefonoInput.setCustomValidity('El teléfono debe tener exactamente 9 números.');
+                            }
+                        });
+
+                        telefonoInput.addEventListener('blur', () => {
+                            const value = telefonoInput.value.trim();
+                            if (value && !/^\d{9}$/.test(value)) {
+                                telefonoInput.setCustomValidity('El teléfono debe tener exactamente 9 números.');
+                            } else {
+                                telefonoInput.setCustomValidity('');
+                            }
+                        });
+                    }
+
+                    if (contactForm) {
+                        contactForm.addEventListener('submit', (event) => {
+                            const value = telefonoInput ? telefonoInput.value.trim() : '';
+                            if (!/^\d{9}$/.test(value)) {
+                                event.preventDefault();
+                                if (telefonoInput) {
+                                    telefonoInput.focus();
+                                    telefonoInput.setCustomValidity('El teléfono debe tener exactamente 9 números.');
+                                    telefonoInput.reportValidity();
+                                }
+                            }
+                        });
+                    }
+
+                    const params = new URLSearchParams(window.location.search);
+                    if (params.get('enviado') === '1') {
+                        const toast = document.createElement('div');
+                        toast.className = 'success-toast';
+                        toast.textContent = 'formulario enviado';
+                        document.body.prepend(toast);
+
+                        requestAnimationFrame(() => toast.classList.add('show'));
+
+                        setTimeout(() => {
+                            toast.classList.remove('show');
+                            setTimeout(() => toast.remove(), 400);
+                        }, 2500);
+                    }
+                </script>
             </div>
         </section>
     </main>
@@ -192,8 +245,17 @@
         font: inherit; 
         font-size: .72rem; }
 
-    .contact-form textarea { resize: vertical; min-height: 78px; }
-    .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: 2px solid #ef7418; outline-offset: 2px; border-color: #ef7418; }
+    .contact-form textarea { 
+        resize: vertical; 
+        min-height: 78px; 
+    }
+
+    .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { 
+        outline: 2px solid #ef7418;
+        outline-offset: 2px; 
+        border-color: #ef7418; 
+    }
+    
     .contact-form button { margin: 2px auto 0; border: 0; border-radius: 3px; padding: 10px 24px; color: #fff; background: #ef7418; cursor: pointer; font: inherit; font-size: .72rem; font-weight: bold; transition: background 160ms ease, transform 160ms ease; }
     .contact-form button:hover { background: #d85f0d; transform: translateY(-1px); }
     .contact-details { padding: 0; background: transparent; box-shadow: none; }
@@ -207,6 +269,27 @@
     .help-card strong { font-size: .78rem; }
     .help-card p { margin: 6px 0 12px; line-height: 1.4; }
     .help-card a { display: inline-block; padding: 6px 10px; border-radius: 3px; color: #fff; background: #ef7418; font-size: .62rem; text-decoration: none; }
+    .success-toast {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translate(-50%, -20px);
+        opacity: 0;
+        padding: 12px 22px;
+        border-radius: 999px;
+        background: #1f9a4c;
+        color: #fff;
+        font-size: .78rem;
+        font-weight: 700;
+        letter-spacing: .03em;
+        box-shadow: 0 10px 20px rgba(31, 154, 76, .25);
+        transition: opacity .25s ease, transform .25s ease;
+        z-index: 1000;
+    }
+    .success-toast.show {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
     @media (max-width: 800px) {
         .contact-hero, .contact-hero > img { min-height: 480px; height: 480px; }
         .contact-hero-panel { width: 100%; min-width: 0; height: 58%; inset: 0 auto 0 0; justify-content: center; padding: 36px 28px; background: linear-gradient(90deg, #09243b 0%, rgba(9,36,59,.96) 75%, rgba(9,36,59,0) 100%); }
