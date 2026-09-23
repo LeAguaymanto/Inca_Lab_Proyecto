@@ -6,11 +6,15 @@ const contactoRoutes = require("./views/contactos-est/routes/contactoRoutes")
 
 const app = express()
 const PORT = process.env.PORT || 3006
+const imagenesDir = path.join(__dirname, "views", "Imagenes")
+const capacitacionesDir = path.join(imagenesDir, "Capacitaciones3")
 
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 app.use(express.urlencoded({ extended: false }))
-app.use("/imagenes", express.static(path.join(__dirname, "views", "Imagenes")))
+app.use("/imagenes", express.static(imagenesDir))
+app.use("/imagenes/capacitaciones3", express.static(capacitacionesDir))
+app.use("/imagenes/Capacitaciones3", express.static(capacitacionesDir))
 app.use("/contactos", contactoRoutes)
 
 app.get("/", (req, res) => {
