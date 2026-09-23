@@ -5,25 +5,34 @@ require("dotenv").config()
 const contactoRoutes = require("./views/contactos-est/routes/contactoRoutes")
 
 const app = express()
+const PORT = process.env.PORT || 3006
 
 app.set("view engine", "ejs")
+app.set("views", path.join(__dirname, "views"))
 app.use(express.urlencoded({ extended: false }))
 app.use("/imagenes", express.static(path.join(__dirname, "views", "Imagenes")))
 app.use("/contactos", contactoRoutes)
 
-app.get("/inicio",(req,res)=>{
+app.get("/", (req, res) => {
     res.render("index")
 })
 
-app.get("/Capacitaciones",(req,res)=>{
+app.get("/inicio", (req, res) => {
+    res.render("index")
+})
+
+app.get("/Capacitaciones", (req, res) => {
     res.render("capacitaciones")
 })
 
-app.get("/contactos",(req,res)=>{
+app.get("/contactos", (req, res) => {
     res.render("contactos")
 })
 
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log("Esta bien conectado en el puerto", PORT)
+    })
+}
 
-app.listen(3006, (req,res)=>{
-    console.log("Esta bien conectado")
-})
+module.exports = app
